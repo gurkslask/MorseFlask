@@ -61,3 +61,10 @@ def about():
     """About page."""
     form = LoginForm(request.form)
     return render_template('public/about.html', form=form)
+
+
+@blueprint.route('/morse')
+def morse():
+    """Morse page."""
+    morse_form = MorseForm
+    return render_template('public/morse.html')
