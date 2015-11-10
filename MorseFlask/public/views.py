@@ -4,7 +4,7 @@ from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import login_required, login_user, logout_user
 
 from MorseFlask.extensions import login_manager
-from MorseFlask.public.forms import LoginForm
+from MorseFlask.public.forms import LoginForm, MorseForm
 from MorseFlask.user.forms import RegisterForm
 from MorseFlask.user.models import User
 from MorseFlask.utils import flash_errors
@@ -63,8 +63,8 @@ def about():
     return render_template('public/about.html', form=form)
 
 
-@blueprint.route('/morse')
+@blueprint.route('/morse', methods=['GET', 'POST'])
 def morse():
     """Morse page."""
     morse_form = MorseForm
-    return render_template('public/morse.html')
+    return render_template('public/morse.html', morse_form=morse_form)
