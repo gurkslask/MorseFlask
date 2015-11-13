@@ -42,4 +42,4 @@ class LoginForm(Form):
 class MorseForm(Form):
     """Morse form."""
 
-    unicode_string = StringField('Text String')
+    unicode_string = StringField('Text String', validators=[DataRequired()])

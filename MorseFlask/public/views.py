@@ -8,6 +8,7 @@ from MorseFlask.public.forms import LoginForm, MorseForm
 from MorseFlask.user.forms import RegisterForm
 from MorseFlask.user.models import User
 from MorseFlask.utils import flash_errors
+from str_to_morse import convert_string_to_morse as morse_string
 
 blueprint = Blueprint('public', __name__, static_folder='../static')
 
@@ -66,5 +67,10 @@ def about():
 @blueprint.route('/morse', methods=['GET', 'POST'])
 def morse():
     """Morse page."""
-    morse_form = MorseForm
-    return render_template('public/morse.html', form=morse_form)
+    form = LoginForm(request.form)
+    morse_form = MorseForm()    
+    if morse_form.validate_on_submit():
+        flash('Here is what you wrote: {}'.format(''.join(morse_string(morse_form.unicode_string.data))))
+        return redirect(url_for('public.morse'))
+    return render_template('public/morse.html', form=form, morse_form=morse_form)
+

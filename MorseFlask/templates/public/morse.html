@@ -1,17 +1,13 @@
 
 {% extends "layout.html" %}
 {% block content %}
-{% import "bootstrap/wtf.html" as wtf %} 
 
 <div class="body-content">
     Here is morse
     <form id="registerForm" class="form form-register" method="POST" action="" role="form">
-        {{ form.hidden_tag() }}
-        <div class="form-group">
-            {{ form.unicode_string.label }}
-            {{ form.unicode_string(placeholder="String", class_="form-control")}}
-        </div>
-            <p><input class="btn btn-default btn-submit" type="submit" value="Register"></p>
+        {{ morse_form.hidden_tag() }}
+        {{ morse_form.unicode_string(size=80) }}
+        <p><input class="btn btn-default btn-submit" type="submit" value="Register"></p>
     </form>
 </div>
 {% endblock %}
