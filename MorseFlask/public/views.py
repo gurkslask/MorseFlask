@@ -67,4 +67,4 @@ def about():
 def morse():
     """Morse page."""
     morse_form = MorseForm
-    return render_template('public/morse.html', morse_form=morse_form)
+    return render_template('public/morse.html', form=morse_form)
